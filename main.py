@@ -21,11 +21,14 @@ def get_pitcher_stats():
 
     stats = pitching_stats(start_season, end_season)
 
+
     if player_id not in stats["IDfg"].values:
         print(f"No stats found for {pitcher_first} {pitcher_last} from {start_season} to {end_season}.")
         return
     
     pitcher_stats = stats[stats['IDfg'] == player_id]
+    pitcher_stats = pitcher_stats.sort_values(by="Season")
+
     selected_columns = ['Name', 'Team', 'Season', 'W', 'L', 'ERA', 'WAR', 'SO', 'WHIP']
     print("Pitching Stats")
     print(pitcher_stats[selected_columns])

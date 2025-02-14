@@ -8,12 +8,12 @@ def get_pitcher_stats():
     player_info = playerid_lookup(pitcher_last, pitcher_first)
 
     if player_info.empty:
-        print("Player not found!")
+        print("Player not found")
         return
     print(player_info)
 
-    player_id = player_info.iloc[0]['key_mlbam']
-    print(f"MLBAM ID for {pitcher_first} {pitcher_last}: {player_id}")
+    player_id = player_info.iloc[0]['key_fangraphs'] # Credit: ChatGPT, used GPT to debug it giving no stats found, told me I needed to get fangraphs, not MLBAM 
+    print(f"Fangraphs ID for {pitcher_first} {pitcher_last}: {player_id}")
 
 
     start_season = input("Enter Start Season: ")
@@ -21,12 +21,13 @@ def get_pitcher_stats():
 
     stats = pitching_stats(start_season, end_season)
 
-    pitcher_stats = stats[stats['IDfg'] == player_id]
-    if pitcher_stats.empty:
-        print(f"No stats found for {pitcher_first} {pitcher_last} in {start_season}-{end_season}")
+    if player_id not in stats["IDfg"].values:
+        print(f"No stats found for {pitcher_first} {pitcher_last} from {start_season} to {end_season}.")
         return
-
+    
+    pitcher_stats = stats[stats['IDfg'] == player_id]
     selected_columns = ['Name', 'Team', 'Season', 'W', 'L', 'ERA', 'WAR', 'SO', 'WHIP']
+    print("Pitching Stats")
     print(pitcher_stats[selected_columns])
 
 

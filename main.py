@@ -18,7 +18,7 @@ def get_pitcher_stats():
 
     start_season = input("Enter Start Season: ")
     end_season = input("Enter End Season: ")
-
+    print("Processing...")
     stats = pitching_stats(start_season, end_season)
 
 
@@ -35,5 +35,4 @@ def get_pitcher_stats():
 
 
 
-if __name__ == "__main__":
-    get_pitcher_stats()
+get_pitcher_stats()

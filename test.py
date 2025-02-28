@@ -4,11 +4,9 @@ from pybaseball import statcast_pitcher
 def start():
     while True:
         s = input("Choose an option (Enter only the number, anything else will re-prompt you):\n1. Pitching Stats\n2. Hitting Stats\n3. Standings\n")
-        s.lower()
-        s.strip()
-        if s != 1 or 2 or 3:
-            continue
-        break
+        if s.strip() == "1" or "2" or "3": 
+            break
+
 def get_pitcher_stats():
     pitcher_last = input("Enter pitchers last name: ").strip()
     pitcher_first = input("Enter pitchers first name: ").strip()
@@ -42,5 +40,4 @@ def get_pitcher_stats():
     print(pitcher_stats[selected_columns])
 
 
-
-get_pitcher_stats()
+start()

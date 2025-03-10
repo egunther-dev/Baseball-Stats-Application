@@ -1,7 +1,8 @@
-from pybaseball import playerid_lookup, pitching_stats
+from pybaseball import playerid_lookup, pitching_stats, batting_stats
 from pybaseball import statcast_pitcher
-
+import pandas as pd
 def start():
+
     while True:
         s = input("Choose an option (Enter only the number, anything else will re-prompt you):\n1. Pitching Stats\n2. Hitting Stats\n3. Standings\n")
         if s.strip() == "1": 
@@ -47,6 +48,10 @@ def get_pitcher_stats():
     print(pitcher_stats[selected_columns])
 
 def get_hitting_stats():
-    print()
+    data = batting_stats(2023)
+    pd.set_option('display.max_rows',None)
+    data = data.sort_index()
+
+    print(data)
 
 start()
